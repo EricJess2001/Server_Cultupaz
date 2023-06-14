@@ -45,7 +45,7 @@ export const createTask = async (req, res) => {
           idMuro: result.insertId,
           title,
           description,
-        }); 
+        });
       }
     );
   } catch (error) {

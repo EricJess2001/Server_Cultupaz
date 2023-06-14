@@ -8,13 +8,14 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import {
-  enviarasistencia,
-  verasistencia,
-  crearevento,
-  mostarevento,
-} from "./controllers/GestorController.js";
-import gestor from "./routes/gestor.routes.js";
+import morgan from "morgan";
+// import {
+//   enviarasistencia,
+//   verasistencia,
+//   crearevento,
+//   mostarevento,
+// } from "../controllers/GestorController.js";
+import gestor from "../app/routes/gestor.routes.js";
 // import Jwt from "jsonwebtoken";
 
 import {
@@ -23,26 +24,19 @@ import {
   createTask,
   deleteTask,
   updateTask,
-} from "./controllers/murin.controllers copy.js";
+} from "../app/controllers/murin.controllers copy.js";
 // LLamo a mis rutas
 // import GaleriaRouter from "./routes/artesanias.routes.js";
 import dbconnection from "./database/dbConf.js";
 // import uploadController from "./controllers/uploadController.js";
-import getController from "./controllers/getController.js";
+import getController from "../app/controllers/getController.js";
 import path from "path";
 //registrologin
-import registrosApp from "./routes/registros.routes.js";
+import registrosApp from "../app/routes/registros.routes.js";
 //verusuarios
-import usuarios from "./routes/usuarios.routes.js";
+import usuarios from "../app/routes/usuarios.routes.js";
 //ver solicitudes
-import solicitudes from "./routes/admin.routes.js";
-
-dbconnection.connect((error) => {
-  if (error) {
-    throw error;
-  }
-  console.log("Conectado a la base de datos Cultupaz");
-});
+import solicitudes from "../app/routes/admin.routes.js";
 
 // Mi app principal
 const app = express();
@@ -54,7 +48,7 @@ app.use(
 app.use(express.json());
 // Configurar node procesar datos registro de datos y login enviados dese un form.
 app.use(express.urlencoded({ extended: true }));
-// app.use(morgan());
+app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(
@@ -68,6 +62,13 @@ app.use(
     },
   })
 );
+
+dbconnection.connect((error) => {
+  if (error) {
+    throw error;
+  }
+  console.log("Conectado a la base de datos Cultupaz");
+});
 
 // router.get("/api/get", getController);
 // router.post("/api/endpoint", uploadController);
@@ -107,7 +108,4 @@ app.delete("/tasks/:id", deleteTask);
 
 app.get("/ping");
 
-app.listen(7000, () => {
-  console.log("http://localhost:7000");
-});
-// export default app;
+export default app;

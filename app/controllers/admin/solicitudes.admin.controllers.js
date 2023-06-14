@@ -2,7 +2,8 @@ import dbconnection from "../../database/dbConf.js";
 
 export const verSolicitud = async (req, res) => {
   try {
-    const query ="SELECT * FROM usuarios WHERE idTipo =2 AND estadoUsuario = 0";
+    const query =
+      "SELECT * FROM usuarios WHERE idTipo =2 AND estadoUsuario = 0";
     dbconnection.query(query, (err, result) => {
       if (err) {
         return res.status(500).json({ message: err.message });
@@ -31,7 +32,8 @@ export const aceptarSolicitud = async (req, res) => {
 };
 export const nuevaSolicitud = async (req, res) => {
   try {
-    const query ="SELECT COUNT(*) AS nuevaSolicitud FROM usuarios WHERE idTipo =2 AND estadoUsuario = 0";
+    const query =
+      "SELECT COUNT(*) AS nuevaSolicitud FROM usuarios WHERE idTipo =2 AND estadoUsuario = 0";
     dbconnection.query(query, (err, result) => {
       if (err) {
         return res.status(500).json({ message: err.message });

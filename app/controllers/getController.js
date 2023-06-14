@@ -22,14 +22,9 @@ const getController = (req, res) => {
         img.imagen = imageFilename;
       }
     });
-    
 
     res.json(rows);
   });
 };
 
 export default getController;
-
-
-
-  

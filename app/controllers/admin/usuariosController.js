@@ -1,24 +1,24 @@
 import dbconnection from "../../database/dbConf.js";
 //ver todos los usuarios
 export const verAprendices = async (req, res) => {
-    try {
-        const query = "SELECT * FROM usuarios WHERE idTipo =1";
-        dbconnection.query(query, (err, result) => {
-        if (err) {
-          return res.status(500).json({ message: err.message });
-        }
-        res.json(result);
-      });
-    } catch (error) {
-      return res.status(500).json({ message: error.message });
-    }
+  try {
+    const query = "SELECT * FROM usuarios WHERE idTipo =1";
+    dbconnection.query(query, (err, result) => {
+      if (err) {
+        return res.status(500).json({ message: err.message });
+      }
+      res.json(result);
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 //ver gestores
-export const verGestores= async (req, res) => {
+export const verGestores = async (req, res) => {
   try {
-      const query = "SELECT * FROM usuarios WHERE idTipo =2";
-      dbconnection.query(query, (err, result) => {
+    const query = "SELECT * FROM usuarios WHERE idTipo =2";
+    dbconnection.query(query, (err, result) => {
       if (err) {
         return res.status(500).json({ message: err.message });
       }
@@ -39,31 +39,30 @@ export const verAprendiz = async (req, res) => {
       }
       res.json(resul);
     });
-  }catch (error) {
+  } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 //actualizar datos
-export const updateUsuarios= async (req, res) => {
+export const updateUsuarios = async (req, res) => {
   try {
-      const query ="UPDATE usuarios SET ? WHERE idUsuario =?";
-      dbconnection.query(query,[req.body, req.params.id], (err, resul) => {
+    const query = "UPDATE usuarios SET ? WHERE idUsuario =?";
+    dbconnection.query(query, [req.body, req.params.id], (err, resul) => {
       if (err) {
         return res.status(500).json({ message: err.message });
       }
       res.json(resul);
-    }
-    );
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
 ///ver total usuarios
-export const totalUsuarios= async(req, res)=>{
-  try{
+export const totalUsuarios = async (req, res) => {
+  try {
     const query = "SELECT COUNT(*) AS totalUsuarios FROM usuarios";
-    dbconnection.query(query,(err, result) => {
+    dbconnection.query(query, (err, result) => {
       if (err) {
         return res.status(500).json({ message: err.message });
       }
@@ -72,7 +71,7 @@ export const totalUsuarios= async(req, res)=>{
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
-}
+};
 
 //inactivar Usuario
 export const inactivarUsuario = async (req, res) => {
