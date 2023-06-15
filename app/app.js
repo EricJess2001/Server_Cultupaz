@@ -89,7 +89,7 @@ app.use(express.static("guardar"));
 app.get("/api/get", getController);
 
 app.get("/", (req, res) => {
-  res.json("Ruta de inicio de mi app." + [1, 2, 3, 4, 5]);
+  res.json("Ruta de inicio de mi app.");
 });
 
 // Ruta DELETE para eliminar los datos
