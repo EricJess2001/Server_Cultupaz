@@ -88,6 +88,10 @@ app.use(express.static("guardar"));
 // Ruta GET para obtener los datos
 app.get("/api/get", getController);
 
+app.get("/", (req, res) => {
+  res.json("Ruta de inicio de mi app." + [1, 2, 3, 4, 5]);
+});
+
 // Ruta DELETE para eliminar los datos
 app.delete("/api/endpoint", (req, res) => {
   // Aquí puedes realizar la lógica para eliminar los datos de tu base de datos
